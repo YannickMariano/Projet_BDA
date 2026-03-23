@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🏦 Connexion — Banque</title>
+    <title>Connexion — Banque</title>
     <style>
         :root {
             --primary:  #1a3c5e;
@@ -207,14 +207,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Brand -->
     <div class="brand">
-        <span class="icon">🏦</span>
+        <!-- <span class="icon">🏦</span> -->
         <h1>BanqueApp</h1>
         <p>Gestion & Audit des Comptes Bancaires</p>
     </div>
 
     <!-- Card -->
     <div class="card">
-        <h2>🔐 Connexion</h2>
+        <h2>Connexion</h2>
 
         <?php if ($error): ?>
         <div class="alert-error">⚠️ <?= htmlspecialchars($error) ?></div>
@@ -224,7 +224,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label>Nom d'utilisateur</label>
                 <div class="input-wrap">
-                    <span class="ico">👤</span>
+                    <!-- <span class="ico">👤</span> -->
                     <input type="text" name="username" required
                            placeholder="Entrez votre identifiant"
                            value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
@@ -234,7 +234,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label>Mot de passe</label>
                 <div class="input-wrap">
-                    <span class="ico">🔑</span>
+                    <!-- <span class="ico">🔑</span> -->
                     <input type="password" name="password" required
                            placeholder="Entrez votre mot de passe">
                 </div>
@@ -255,7 +255,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 "
                 onmouseover="this.style.background='#27ae60';this.style.color='#fff'"
                 onmouseout="this.style.background='#fff';this.style.color='#27ae60'"
-                >✏️ S'enregistrer</a>
+                >S'enregistrer</a>
             </div>
         </form>
 

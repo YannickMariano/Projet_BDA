@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🏦 S'enregistrer — BanqueApp</title>
+    <title>S'enregistrer — BanqueApp</title>
     <style>
         :root {
             --primary:   #1a3c5e;
@@ -203,7 +203,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <!-- Brand -->
     <div class="brand">
-        <span class="icon">🏦</span>
+        <!-- <span class="icon">🏦</span> -->
         <h1>BanqueApp</h1>
         <p>Créer un nouveau compte</p>
     </div>
@@ -213,22 +213,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <?php if ($success): ?>
         <!-- ===== SUCCÈS ===== -->
         <div class="success-box">
-            <span class="check">✅</span>
+            <!-- <span class="check">✅</span> -->
             <h3>Compte créé avec succès !</h3>
             <p>
                 Bienvenue <strong><?= htmlspecialchars($success) ?></strong> !<br>
                 Votre compte a bien été enregistré.<br>
                 Vous pouvez maintenant vous connecter.
             </p>
-            <a href="login.php" class="btn-go">🔐 Se connecter →</a>
+            <a href="login.php" class="btn-go">Se connecter →</a>
         </div>
 
     <?php else: ?>
         <!-- ===== FORMULAIRE ===== -->
-        <h2>✏️ Créer un compte</h2>
+        <h2>Créer un compte</h2>
 
         <?php if ($error): ?>
-        <div class="alert alert-error">⚠️ <?= htmlspecialchars($error) ?></div>
+        <div class="alert alert-error"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
 
         <form method="POST">
@@ -236,7 +236,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label>Nom complet</label>
                 <div class="input-wrap">
-                    <span class="ico">🧑</span>
+                    <!-- <span class="ico">🧑</span> -->
                     <input type="text" name="nom_complet" required
                            placeholder="Ex : Jean Dupont"
                            value="<?= htmlspecialchars($_POST['nom_complet'] ?? '') ?>">
@@ -246,7 +246,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label>Nom d'utilisateur</label>
                 <div class="input-wrap">
-                    <span class="ico">👤</span>
+                    <!-- <span class="ico">👤</span> -->
                     <input type="text" name="username" required
                            placeholder="Ex : jean_dupont"
                            value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
@@ -257,7 +257,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label>Mot de passe</label>
                 <div class="input-wrap">
-                    <span class="ico">🔑</span>
+                    <!-- <span class="ico">🔑</span> -->
                     <input type="password" name="password" id="pwd" required
                            placeholder="Minimum 6 caractères"
                            oninput="checkStrength(this.value)">
@@ -269,7 +269,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <div class="form-group">
                 <label>Confirmer le mot de passe</label>
                 <div class="input-wrap">
-                    <span class="ico">🔒</span>
+                    <!-- <span class="ico">🔒</span> -->
                     <input type="password" name="confirm" id="confirm" required
                            placeholder="Répétez le mot de passe"
                            oninput="checkMatch()">
@@ -277,7 +277,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="hint" id="matchHint"></div>
             </div>
 
-            <button type="submit" class="btn-register">✅ Créer mon compte</button>
+            <button type="submit" class="btn-register">Créer mon compte</button>
         </form>
 
         <a href="login.php" class="back-link">← Retour à la connexion</a>
@@ -321,10 +321,10 @@ function checkMatch() {
     const hint    = document.getElementById('matchHint');
     if (!confirm) { hint.textContent = ''; return; }
     if (pwd === confirm) {
-        hint.textContent = '✅ Les mots de passe correspondent';
+        hint.textContent = 'Les mots de passe correspondent';
         hint.style.color = '#27ae60';
     } else {
-        hint.textContent = '❌ Les mots de passe ne correspondent pas';
+        hint.textContent = 'Les mots de passe ne correspondent pas';
         hint.style.color = '#e74c3c';
     }
 }

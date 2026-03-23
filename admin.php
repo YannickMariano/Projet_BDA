@@ -227,14 +227,14 @@ $users = $pdo->query("SELECT DISTINCT utilisateur FROM audit_compte ORDER BY uti
 <!-- ===== NAVBAR ===== -->
 <nav>
     <div class="nav-brand">
-        <span>🏦</span> BanqueApp
+        <span></span> BanqueApp
     </div>
     <div class="nav-right">
         <div class="nav-user">
-            🛡️ <?= htmlspecialchars($_SESSION['nom_complet']) ?>
+            <?= htmlspecialchars($_SESSION['nom_complet']) ?>
             <span class="badge-admin-nav">ADMIN</span>
         </div>
-        <a href="logout.php" class="btn-logout">🚪 Déconnexion</a>
+        <a href="logout.php" class="btn-logout">Déconnexion</a>
     </div>
 </nav>
 
@@ -242,7 +242,7 @@ $users = $pdo->query("SELECT DISTINCT utilisateur FROM audit_compte ORDER BY uti
 
     <!-- Page Title -->
     <div class="page-title">
-        <div class="icon-wrap">🔍</div>
+        <!-- <div class="icon-wrap">🔍</div> -->
         <div>
             <h1>Journal d'Audit</h1>
             <p>Supervision de toutes les opérations sur les comptes clients</p>
@@ -251,29 +251,29 @@ $users = $pdo->query("SELECT DISTINCT utilisateur FROM audit_compte ORDER BY uti
 
     <!-- Bandeau lecture seule -->
     <div class="readonly-banner">
-        <span class="ico">👁️</span>
+        <!-- <span class="ico">👁️</span> -->
         <span>Mode <strong>Administrateur</strong> — Consultation uniquement. Vous supervisez les actions de tous les utilisateurs.</span>
     </div>
 
     <!-- Stats -->
     <div class="stats-row">
         <div class="stat-card stat-insert">
-            <div class="ico">➕</div>
+            <!-- <div class="ico">➕</div> -->
             <div class="num"><?= $stats['nb_insertions'] ?></div>
             <div class="lbl">Insertions</div>
         </div>
         <div class="stat-card stat-modif">
-            <div class="ico">✏️</div>
+            <!-- <div class="ico">✏️</div> -->
             <div class="num"><?= $stats['nb_modifications'] ?></div>
             <div class="lbl">Modifications</div>
         </div>
         <div class="stat-card stat-delete">
-            <div class="ico">🗑️</div>
+            <!-- <div class="ico">🗑️</div> -->
             <div class="num"><?= $stats['nb_suppressions'] ?></div>
             <div class="lbl">Suppressions</div>
         </div>
         <div class="stat-card stat-total">
-            <div class="ico">📊</div>
+            <!-- <div class="ico">📊</div> -->
             <div class="num"><?= $stats['total'] ?></div>
             <div class="lbl">Total</div>
         </div>
@@ -281,7 +281,7 @@ $users = $pdo->query("SELECT DISTINCT utilisateur FROM audit_compte ORDER BY uti
 
     <!-- Table Audit -->
     <div class="card">
-        <div class="card-header">📋 Historique complet des opérations</div>
+        <div class="card-header">Historique complet des opérations</div>
         <div class="card-body">
 
             <!-- Filtres -->
@@ -290,9 +290,9 @@ $users = $pdo->query("SELECT DISTINCT utilisateur FROM audit_compte ORDER BY uti
                     <label>Type d'action</label>
                     <select name="filter_action">
                         <option value="">— Tous —</option>
-                        <option value="INSERTION"    <?= $filterAction==='INSERTION'    ? 'selected':'' ?>>➕ Insertion</option>
-                        <option value="MODIFICATION" <?= $filterAction==='MODIFICATION' ? 'selected':'' ?>>✏️ Modification</option>
-                        <option value="SUPPRESSION"  <?= $filterAction==='SUPPRESSION'  ? 'selected':'' ?>>🗑️ Suppression</option>
+                        <option value="INSERTION"    <?= $filterAction==='INSERTION'    ? 'selected':'' ?>>Insertion</option>
+                        <option value="MODIFICATION" <?= $filterAction==='MODIFICATION' ? 'selected':'' ?>>Modification</option>
+                        <option value="SUPPRESSION"  <?= $filterAction==='SUPPRESSION'  ? 'selected':'' ?>>Suppression</option>
                     </select>
                 </div>
                 <div class="filter-group">
@@ -311,8 +311,8 @@ $users = $pdo->query("SELECT DISTINCT utilisateur FROM audit_compte ORDER BY uti
                     <label>Date</label>
                     <input type="date" name="filter_date" value="<?= htmlspecialchars($filterDate) ?>">
                 </div>
-                <button type="submit" class="btn-filter">🔍 Filtrer</button>
-                <a href="index.php" class="btn-reset">✖ Réinitialiser</a>
+                <button type="submit" class="btn-filter">Filtrer</button>
+                <a href="index.php" class="btn-reset">Réinitialiser</a>
             </form>
 
             <!-- Table -->
@@ -334,7 +334,7 @@ $users = $pdo->query("SELECT DISTINCT utilisateur FROM audit_compte ORDER BY uti
                     <?php if (empty($audits)): ?>
                         <tr><td colspan="8">
                             <div class="empty-state">
-                                <div class="ico">📭</div>
+                                <!-- <div class="ico">📭</div> -->
                                 <p>Aucune opération trouvée pour ces critères.</p>
                             </div>
                         </td></tr>
@@ -345,7 +345,7 @@ $users = $pdo->query("SELECT DISTINCT utilisateur FROM audit_compte ORDER BY uti
                             <td>
                                 <span class="badge badge-<?= $a['type_action'] ?>">
                                     <?php
-                                    $icons = ['INSERTION'=>'➕','MODIFICATION'=>'✏️','SUPPRESSION'=>'🗑️'];
+                                    $icons = ['INSERTION'=>'','MODIFICATION'=>'','SUPPRESSION'=>''];
                                     echo $icons[$a['type_action']] . ' ' . $a['type_action'];
                                     ?>
                                 </span>
@@ -376,19 +376,19 @@ $users = $pdo->query("SELECT DISTINCT utilisateur FROM audit_compte ORDER BY uti
                     <!-- PIED : Totaux -->
                     <tfoot>
                         <tr class="total-row">
-                            <td colspan="2" style="text-align:right">📊 TOTAUX :</td>
+                            <td colspan="2" style="text-align:right">TOTAUX :</td>
                             <td colspan="6">
                                 <span style="color:var(--accent);margin-right:22px">
-                                    ➕ Insertions : <strong><?= $stats['nb_insertions'] ?></strong>
+                                    Insertions : <strong><?= $stats['nb_insertions'] ?></strong>
                                 </span>
                                 <span style="color:var(--secondary);margin-right:22px">
-                                    ✏️ Modifications : <strong><?= $stats['nb_modifications'] ?></strong>
+                                    Modifications : <strong><?= $stats['nb_modifications'] ?></strong>
                                 </span>
                                 <span style="color:var(--danger);margin-right:22px">
-                                    🗑️ Suppressions : <strong><?= $stats['nb_suppressions'] ?></strong>
+                                    Suppressions : <strong><?= $stats['nb_suppressions'] ?></strong>
                                 </span>
                                 <span style="color:var(--primary)">
-                                    📈 Total : <strong><?= $stats['total'] ?></strong>
+                                    Total : <strong><?= $stats['total'] ?></strong>
                                 </span>
                             </td>
                         </tr>

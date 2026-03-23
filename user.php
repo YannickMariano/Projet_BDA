@@ -24,10 +24,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 "INSERT INTO compte (nom_client, solde, user_id) VALUES (:nom, :solde, :uid)"
             );
             $stmt->execute([':nom' => $nom, ':solde' => $solde, ':uid' => $userId]);
-            $message     = "✅ Compte <strong>$nom</strong> créé avec succès.";
+            $message     = "Compte du client <strong>$nom</strong> créé avec succès.";
             $messageType = 'success';
         } else {
-            $message     = "⚠️ Le nom du compte est obligatoire.";
+            $message     = "Le nom du client est obligatoire.";
             $messageType = 'warning';
         }
     }
@@ -43,10 +43,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         );
         $stmt->execute([':nom'=>$nom,':solde'=>$solde,':num'=>$num,':uid'=>$userId]);
         if ($stmt->rowCount() > 0) {
-            $message     = "✏️ Compte N°<strong>$num</strong> modifié.";
+            $message     = "Compte N°<strong>$num</strong> modifié.";
             $messageType = 'info';
         } else {
-            $message     = "❌ Opération non autorisée.";
+            $message     = "Opération non autorisée.";
             $messageType = 'danger';
         }
     }
@@ -59,10 +59,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         );
         $stmt->execute([':num'=>$num,':uid'=>$userId]);
         if ($stmt->rowCount() > 0) {
-            $message     = "🗑️ Compte N°<strong>$num</strong> supprimé.";
+            $message     = "Compte N°<strong>$num</strong> supprimé.";
             $messageType = 'danger';
         } else {
-            $message     = "❌ Opération non autorisée.";
+            $message     = "Opération non autorisée.";
             $messageType = 'danger';
         }
     }
@@ -93,7 +93,7 @@ if (isset($_GET['edit'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🏦 Mes Comptes</title>
+    <title>Mes Comptes</title>
     <style>
         :root {
             --primary:   #1a3c5e;
@@ -251,13 +251,13 @@ if (isset($_GET['edit'])) {
 
 <!-- ===== NAVBAR ===== -->
 <nav>
-    <div class="nav-brand"><span>🏦</span> BanqueApp</div>
+    <div class="nav-brand"><span></span> BanqueApp</div>
     <div class="nav-right">
         <div class="nav-user">
             👤 <?= htmlspecialchars($_SESSION['nom_complet']) ?>
-            <span class="badge-user-nav">USER</span>
+            <span class="badge-user-nav">CAISSIER</span>
         </div>
-        <a href="logout.php" class="btn-logout">🚪 Déconnexion</a>
+        <a href="logout.php" class="btn-logout">Déconnexion</a>
     </div>
 </nav>
 
@@ -266,11 +266,11 @@ if (isset($_GET['edit'])) {
     <!-- Welcome Banner -->
     <div class="welcome-banner">
         <div>
-            <h2>👋 Bienvenue, <?= htmlspecialchars($_SESSION['nom_complet']) ?> !</h2>
-            <p>Gérez vos comptes bancaires · <?= count($comptes) ?> compte<?= count($comptes)>1?'s':'' ?> enregistré<?= count($comptes)>1?'s':'' ?></p>
+            <h2>Bienvenue, <?= htmlspecialchars($_SESSION['nom_complet']) ?> !</h2>
+            <p>Espace Caissier · <?= count($comptes) ?> client<?= count($comptes)>1?'s':'' ?> enregistré<?= count($comptes)>1?'s':'' ?></p>
         </div>
         <div class="solde-total-block">
-            <div class="lbl">Solde Total</div>
+            <div class="lbl">Solde Total Clients</div>
             <div class="val"><?= number_format($soldeTotal, 2, ',', ' ') ?> Ar</div>
         </div>
     </div>
@@ -286,7 +286,7 @@ if (isset($_GET['edit'])) {
         <!-- ---- Formulaire ---- -->
         <div class="card">
             <div class="card-header">
-                <?= $editData ? '✏️ Modifier le compte' : '➕ Nouveau compte' ?>
+                <?= $editData ? 'Modifier le compte' : 'Nouveau compte' ?>
             </div>
             <div class="card-body">
                 <form method="POST">
@@ -304,14 +304,14 @@ if (isset($_GET['edit'])) {
                     <?php endif; ?>
 
                     <div class="form-group">
-                        <label>Intitulé du compte</label>
+                        <label>Nom du client</label>
                         <input type="text" name="nom_client" required
-                               placeholder="Ex : Compte courant, Épargne…"
+                               placeholder="Ex : Rakoto"
                                value="<?= htmlspecialchars($editData['nom_client'] ?? '') ?>">
                     </div>
 
                     <div class="form-group">
-                        <label>Solde initial (Ar)</label>
+                        <label>Solde (Ar)</label>
                         <input type="number" name="solde" step="0.01" min="0" required
                                placeholder="0.00"
                                value="<?= htmlspecialchars($editData['solde'] ?? '') ?>">
@@ -319,10 +319,10 @@ if (isset($_GET['edit'])) {
 
                     <div class="btn-group">
                         <?php if ($editData): ?>
-                            <button type="submit" class="btn btn-warning">💾 Enregistrer</button>
-                            <a href="index.php" class="btn btn-primary">✖ Annuler</a>
+                            <button type="submit" class="btn btn-warning">Enregistrer</button>
+                            <a href="index.php" class="btn btn-primary">Annuler</a>
                         <?php else: ?>
-                            <button type="submit" class="btn btn-success">➕ Créer le compte</button>
+                            <button type="submit" class="btn btn-success">Enregistrer</button>
                         <?php endif; ?>
                     </div>
                 </form>
@@ -331,14 +331,14 @@ if (isset($_GET['edit'])) {
 
         <!-- ---- Table des comptes ---- -->
         <div class="card">
-            <div class="card-header">📋 Mes Comptes Bancaires</div>
+            <div class="card-header">Comptes des Clients</div>
             <div class="card-body" style="padding:0">
                 <div class="table-wrap">
                     <table>
                         <thead>
                             <tr>
                                 <th>N° Compte</th>
-                                <th>Intitulé</th>
+                                <th>Nom du Client</th>
                                 <th>Solde (Ar)</th>
                                 <th>Actions</th>
                             </tr>
@@ -347,8 +347,8 @@ if (isset($_GET['edit'])) {
                         <?php if (empty($comptes)): ?>
                             <tr><td colspan="4">
                                 <div class="empty-state">
-                                    <div class="ico">💳</div>
-                                    <p>Vous n'avez aucun compte.<br>Créez-en un avec le formulaire.</p>
+                                    <!-- <div class="ico">💳</div> -->
+                                    <p>Aucun client enregistré.<br>Ajoutez-en un avec le formulaire.</p>
                                 </div>
                             </td></tr>
                         <?php else: ?>
@@ -361,12 +361,12 @@ if (isset($_GET['edit'])) {
                                 </td>
                                 <td>
                                     <a href="?edit=<?= $c['num_compte'] ?>"
-                                       class="btn btn-warning btn-sm">✏️</a>
+                                       class="btn btn-warning btn-sm">Modifier</a>
                                     <form method="POST" style="display:inline"
                                           onsubmit="return confirm('Supprimer ce compte ?')">
                                         <input type="hidden" name="action" value="supprimer">
                                         <input type="hidden" name="num_compte" value="<?= $c['num_compte'] ?>">
-                                        <button type="submit" class="btn btn-danger btn-sm">🗑️</button>
+                                        <button type="submit" class="btn btn-danger btn-sm">Supprimer</button>
                                     </form>
                                 </td>
                             </tr>
@@ -376,7 +376,7 @@ if (isset($_GET['edit'])) {
                         <?php if (!empty($comptes)): ?>
                         <tfoot>
                             <tr class="total-row">
-                                <td colspan="2" style="text-align:right">💰 Solde Total :</td>
+                                <td colspan="2" style="text-align:right">Solde Total des clients :</td>
                                 <td colspan="2" class="solde-pos">
                                     <?= number_format($soldeTotal, 2, ',', ' ') ?> Ar
                                 </td>
@@ -393,7 +393,7 @@ if (isset($_GET['edit'])) {
 </div><!-- /container -->
 
 <footer style="text-align:center;padding:24px;color:var(--muted);font-size:.82rem;margin-top:24px">
-    🏦 BanqueApp — Espace Personnel · <?= htmlspecialchars($_SESSION['nom_complet']) ?>
+    BanqueApp — Espace Caissier · <?= htmlspecialchars($_SESSION['nom_complet']) ?>
 </footer>
 
 </body>
